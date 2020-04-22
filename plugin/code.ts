@@ -78,6 +78,9 @@ function HSLtoRGB(hsl: HSL): RGB {
 }
 
 function darkenHSL(hsl: HSL): HSL {
+
+  var h = hsl.h, s = hsl.s, l = hsl.l
+
   //переключаем 100% белый и 100% чёрный
   if (hsl.l == 0) {
     return { h: hsl.h, s: hsl.s, l: 1 }
@@ -86,16 +89,22 @@ function darkenHSL(hsl: HSL): HSL {
     return { h: hsl.h, s: hsl.s, l: 0 }
   }
 
-  var h = hsl.h, s = hsl.s, l = hsl.l
-
 //все тёмные цвета инвертируются 
 if (hsl.l < 20.0 / 100.0) {
-  l = 100.0 - hsl.l;
+  l = 1 - hsl.l;
+
+}
+if (hsl.l < 10.0 / 100.0) {
+  l = 1;
 
 }
 
 //все светлые цвета инвертируются
 if (hsl.l > 90.0 / 100.0 && hsl.s < 50.0 / 100.0) {
+  l = 1.0 - hsl.l;
+  s = 0;
+}
+if (hsl.l > 94.0 / 100.0) {
   l = 1.0 - hsl.l;
   s = 0;
 }
@@ -105,7 +114,7 @@ if (hsl.l > 80.0 / 100.0) {
 }
 
 //чуть приглушаем яркость обычных цветов
-if (hsl.s > 30.0 / 100.0 && hsl.l < 70.0 / 100.0) {
+if (hsl.s > 30.0 / 100.0 && hsl.l > 20.0 / 100.0 && hsl.l < 70.0 / 100.0) {
  l = hsl.l + 0.05;
 }
 
