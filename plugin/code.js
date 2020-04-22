@@ -87,6 +87,7 @@ function darkenHSL(hsl) {
         l = 1.0 - hsl.l;
         s = 0;
     }
+    //слишком светлые обесцвечиваем
     if (hsl.l > 94.0 / 100.0) {
         l = 1.0 - hsl.l;
         s = 0;
