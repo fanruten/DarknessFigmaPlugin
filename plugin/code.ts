@@ -91,11 +91,17 @@ function darkenHSL(hsl: HSL): HSL {
   }
 
   if (hsl.s > (60.0 / 100.0)) {
-    s = (60.0 / 100.0);
+    s = hsl.s - 0.06;
+    l = hsl.l + 0.03;
   }
 
   if (hsl.l > (60.0 / 100.0)) {
     l = 0.1 + (1.0 - hsl.l);
+  }
+
+  if (hsl.l > (60.0 / 100.0) && hsl.s < (30.0 / 100.0)) {
+    l = 0.1 + (1.0 - hsl.l);
+    s = 0;
   }
 
   return { h: h, s: s, l: l }
