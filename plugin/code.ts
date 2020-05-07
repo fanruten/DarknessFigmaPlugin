@@ -77,6 +77,30 @@ function HSLtoRGB(hsl: HSL): RGB {
   return { r: r, g: g, b: b }
 }
 
+function origDarkenHSL(hsl: HSL): HSL {
+  if (hsl.l < 0.2) {
+    return { h: hsl.h, s: hsl.s, l: 1 }
+  }
+
+  var h = hsl.h, s = hsl.s, l = hsl.l
+
+  if (hsl.h > (30.0 / 360.0) && hsl.h < (90.0 / 360.0) && hsl.s > (40.0 / 100.0) && hsl.l < (70.0 / 100.0)) {
+    h = (219.0 / 360.0);
+    s = (63.0 / 100.0);
+    l = (41.0 / 100.0);
+  }
+
+  if (hsl.s > (60.0 / 100.0)) {
+    s = (60.0 / 100.0);
+  }
+
+  if (hsl.l > (60.0 / 100.0)) {
+    l = 0.1 + (1.0 - hsl.l);
+  }
+
+  return { h: h, s: s, l: l }
+}
+
 function darkenHSL(hsl: HSL): HSL {  
   if (hsl.l < 10.0 / 100.0) {
     return { h: hsl.h, s: hsl.s, l: 1 }  
