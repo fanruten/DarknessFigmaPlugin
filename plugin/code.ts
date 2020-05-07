@@ -180,7 +180,7 @@ function toDarkness() {
     }
   }
 
-  figma.closePlugin(`Darkness applyed!`);
+  figma.closePlugin(`Darkness applied!`);
 }
 
 toDarkness()

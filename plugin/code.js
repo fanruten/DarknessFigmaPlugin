@@ -160,6 +160,6 @@ function toDarkness() {
             logDebug("Can't update fillStyle", obj);
         }
     }
-    figma.closePlugin(`Darkness applyed!`);
+    figma.closePlugin(`Darkness applied!`);
 }
 toDarkness();
